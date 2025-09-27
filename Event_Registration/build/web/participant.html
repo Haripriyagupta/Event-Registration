@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GDG AITR Event Registration</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: linear-gradient(to right, #f8fff8, #e8fce8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .form-container {
+      width: 420px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.1);
+      background: #fff;
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #5cb85c, #4cae4c);
+      text-align: center;
+      padding: 25px 15px;
+      color: white;
+    }
+
+    .header h1 {
+      font-family: 'Georgia', serif;
+      font-size: 30px;
+      margin: 0;
+      letter-spacing: 1px;
+    }
+
+    .form-title {
+      text-align: center;
+      color: #444;
+      font-weight: bold;
+      margin: 20px 0;
+      font-size: 18px;
+    }
+
+    form {
+      padding: 20px 25px 30px;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      background: #eafbea;
+      padding: 8px 10px;
+      margin-top: 15px;
+      border-radius: 6px;
+      font-size: 14px;
+      color: #2c662d;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 15px;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    input:focus, select:focus {
+      border-color: #5cb85c;
+      outline: none;
+      box-shadow: 0 0 6px rgba(92, 184, 92, 0.5);
+    }
+
+    button {
+      width: 100%;
+      margin-top: 25px;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(90deg, #5cb85c, #4cae4c);
+      color: white;
+      font-size: 17px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    button:hover {
+      background: linear-gradient(90deg, #4cae4c, #449d44);
+      transform: translateY(-2px);
+      box-shadow: 0px 6px 15px rgba(76, 174, 76, 0.3);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <div class="header">
+      <h1><span style="font-size:40px;">G</span>DG <span style="font-size:40px;">A</span>ITR</h1>
+    </div>
+    <p class="form-title">EVENT REGISTRATION</p>
+    <form id="registrationForm" action="/Event_Registration/database" method="post">
+      <label for="name">NAME</label>
+      <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+      <label for="email">EMAIL</label>
+      <input type="email" id="email" name="email" placeholder="Enter email" required>
+
+      <label for="mobile">MOBILE NUMBER</label>
+      <input type="tel" id="mobile" name="mobile" placeholder="Enter your 10 digit mobile no." required>
+
+      <label for="year">YEAR</label>
+      <select id="year" name="year" required>
+        <option value="">Select</option>
+        <option value="1">1st Year</option>
+        <option value="2">2nd Year</option>
+        <option value="3">3rd Year</option>
+        <option value="4">4th Year</option>
+      </select>
+
+      <label for="branch">BRANCH</label>
+      <select id="branch" name="branch" required>
+        <option value="">Select</option>
+        <option value="CSE">CSE</option>
+        <option value="CSIT">CSIT</option>
+        <option value="CY">CY</option>
+        <option value="AIML">AIML</option>
+        <option value="IT">IT</option>
+        <option value="VLSI">VLSI</option>
+        <option value="ECE">ECE</option>
+        <option value="DS">DS</option>
+        <option value="CSE-IL">CSE-IL</option>
+      </select>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("registrationForm").addEventListener("submit", function(event) {
+      let email = document.getElementById("email").value.trim();
+      let mobile = document.getElementById("mobile").value.trim();
+
+      if (!email.includes("@")) {
+        alert("Invalid Email Address. Please include '@'.");
+        event.preventDefault();
+        return;
+      }
+
+      let mobilePattern = /^[0-9]{10}$/;
+      if (!mobilePattern.test(mobile)) {
+        alert("Please enter a 10-digit valid mobile number.");
+        event.preventDefault();
+        return;
+      }
+
+      if (!/^[6-9]/.test(mobile)) {
+        alert("Invalid Mobile Number. It must start from 6–9.");
+        event.preventDefault();
+        return;
+      }
+
+      alert("Form submitted successfully!");
+    });
+  </script>
+</body>
+</html>
